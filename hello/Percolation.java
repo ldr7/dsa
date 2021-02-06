@@ -7,8 +7,8 @@
 import edu.princeton.cs.algs4.WeightedQuickUnionUF;
 
 public class Percolation {
-    int[] id;
-    WeightedQuickUnionUF weightedQuickUnionUF;
+    private int[] id;
+    private WeightedQuickUnionUF weightedQuickUnionUF;
     private int squareLength;
 
     public Percolation(int n) {
@@ -64,6 +64,13 @@ public class Percolation {
         return count;
     }
 
+    public boolean percolates() {
+        if (weightedQuickUnionUF.find(0) == weightedQuickUnionUF
+                .find((squareLength * squareLength) + 1))
+            return true;
+        return false;
+    }
+
     private void topMatching(int row, int col) {
         weightedQuickUnionUF.union(0, convert2DTo1D(row, col));
     }
@@ -74,13 +81,13 @@ public class Percolation {
 
     private void matchingGeneral(int row, int col) {
         // look top,left,right and below for possible open sites and perform union
-        if (validateIndices(row - 1, col))
+        if (validateIndices(row - 1, col) && isOpen(row - 1, col))
             weightedQuickUnionUF.union(convert2DTo1D(row - 1, col), convert2DTo1D(row, col));
-        if (validateIndices(row, col - 1))
+        if (validateIndices(row, col - 1) && isOpen(row, col - 1))
             weightedQuickUnionUF.union(convert2DTo1D(row, col - 1), convert2DTo1D(row, col));
-        if (validateIndices(row, col + 1))
+        if (validateIndices(row, col + 1) && isOpen(row, col + 1))
             weightedQuickUnionUF.union(convert2DTo1D(row, col + 1), convert2DTo1D(row, col));
-        if (validateIndices(row, col - 1))
+        if (validateIndices(row + 1, col) && isOpen(row + 1, col))
             weightedQuickUnionUF.union(convert2DTo1D(row, col - 1), convert2DTo1D(row, col));
         // are diagonals to be considered?
     }
@@ -109,6 +116,8 @@ public class Percolation {
     }
 
     public static void main(String[] args) {
-
+        Percolation percolation = new Percolation(2);
+        StdOut.println("percolates = " + percolation.percolates());
+        
     }
 }
