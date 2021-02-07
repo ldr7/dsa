@@ -29,10 +29,10 @@ public class Percolation {
             throw new IllegalArgumentException();
         if (id[convert2DTo1D(row, col)] != 1) {
             id[convert2DTo1D(row, col)] = 1;
-            if (isTopRow(row, col)) {
+            if (isTopRow(row)) {
                 topMatching(row, col);
             }
-            if (isBottomRow(row, col)) {
+            if (isBottomRow(row)) {
                 bottomMatching(row, col);
             }
             matchingGeneral(row, col);
@@ -88,7 +88,7 @@ public class Percolation {
         if (validateIndices(row, col + 1) && isOpen(row, col + 1))
             weightedQuickUnionUF.union(convert2DTo1D(row, col + 1), convert2DTo1D(row, col));
         if (validateIndices(row + 1, col) && isOpen(row + 1, col))
-            weightedQuickUnionUF.union(convert2DTo1D(row, col - 1), convert2DTo1D(row, col));
+            weightedQuickUnionUF.union(convert2DTo1D(row + 1, col), convert2DTo1D(row, col));
         // are diagonals to be considered?
     }
 
@@ -103,21 +103,46 @@ public class Percolation {
         return ((row - 1) * squareLength + (col - 1) + 1);
     }
 
-    private boolean isTopRow(int row, int col) {
+    private boolean isTopRow(int row) {
         if (row == 1)
             return true;
         return false;
     }
 
-    private boolean isBottomRow(int row, int col) {
-        if (col == squareLength)
+    private boolean isBottomRow(int row) {
+        if (row == squareLength)
             return true;
         return false;
     }
 
     public static void main(String[] args) {
-        Percolation percolation = new Percolation(2);
+        /* Percolation percolation = new Percolation(2);
         StdOut.println("percolates = " + percolation.percolates());
-        
+        StdOut.println("isOpen(1, 2) = " + percolation.isOpen(1, 2));
+        StdOut.println("isFull(1, 2) = " + percolation.isFull(1, 2));
+        StdOut.println("open(1, 2)");
+        percolation.open(1, 2);
+        StdOut.println("isOpen(1, 2) = " + percolation.isOpen(1, 2));
+        StdOut.println("isFull(1, 2) = " + percolation.isFull(1, 2));
+        StdOut.println("numberOfOpenSites() = " + percolation.numberOfOpenSites());
+        StdOut.println("percolates() = " + percolation.percolates());
+
+        StdOut.println("isOpen(2, 1) = " + percolation.isOpen(2, 1));
+        StdOut.println("isFull(2, 1) = " + percolation.isFull(2, 1));
+        StdOut.println("open(2, 1)");
+        percolation.open(2, 1);
+        StdOut.println("isOpen(2, 1) = " + percolation.isOpen(2, 1));
+        StdOut.println("isFull(2, 1) = " + percolation.isFull(2, 1));
+        StdOut.println("numberOfOpenSites() = " + percolation.numberOfOpenSites());
+        StdOut.println("percolates() = " + percolation.percolates());
+
+        StdOut.println("isOpen(1, 1) = " + percolation.isOpen(1, 1));
+        StdOut.println("isFull(1, 1) = " + percolation.isFull(1, 1));
+        StdOut.println("open(1, 1)");
+        percolation.open(1, 1);
+        StdOut.println("isOpen(1, 1) = " + percolation.isOpen(1, 1));
+        StdOut.println("isFull(1, 1) = " + percolation.isFull(1, 1));
+        StdOut.println("numberOfOpenSites() = " + percolation.numberOfOpenSites());
+        StdOut.println("percolates() = " + percolation.percolates());*/
     }
 }

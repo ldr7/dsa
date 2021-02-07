@@ -9,7 +9,7 @@ import edu.princeton.cs.algs4.StdStats;
 
 public class PercolationStats {
     private Percolation[] percolations;
-    private int[] threshold;
+    private double[] threshold;
 
     public PercolationStats(int n, int trials) {
         if (!validateIndices(n, trials))
@@ -23,32 +23,32 @@ public class PercolationStats {
 
     public static void main(String[] args) {
         int n = Integer.parseInt(args[0]);
-        int T = Integer.parseInt(args[1]);
-        PercolationStats percolationStats = new PercolationStats(n, T);
-        System.out.println(percolationStats.mean());
-        System.out.println(percolationStats.stddev());
-        System.out.println(percolationStats.confidenceLo());
-        System.out.println(percolationStats.confidenceHi());
+        int trials = Integer.parseInt(args[1]);
+        PercolationStats percolationStats = new PercolationStats(n, trials);
+        System.out.println("mean = " + percolationStats.mean());
+        System.out.println("stddev = " + percolationStats.stddev());
+        System.out.println("95% confidence interval = [" + percolationStats.confidenceLo() + ", "
+                                   + percolationStats.confidenceHi() + "]");
     }
 
-    private void simulation(int n, int T) {
-        this.threshold = new int[T];
-        intialize(n, T);
-        for (int i = 0; i < T; i++) {
-            int numberOfOpenSites = percolations[i].numberOfOpenSites();
+    private void simulation(int n, int trials) {
+        if (!validateIndices(n, trials))
+            throw new IllegalArgumentException();
+        double totalSites = n * n;
+        this.threshold = new double[trials];
+        for (int i = 0; i < trials; i++) {
             while (!percolations[i].percolates()) {
                 int[] blockedSite;
                 blockedSite = randomBlockedSite(i, n);
                 percolations[i].open(blockedSite[0], blockedSite[1]);
-                numberOfOpenSites += 1;
             }
-            this.threshold[i] = numberOfOpenSites;
+            this.threshold[i] = percolations[i].numberOfOpenSites() / totalSites;
         }
     }
 
     private int[] randomBlockedSite(int index, int n) {
-        int randomNumberRow = StdRandom.uniform(1, n);
-        int randomNumberColumn = StdRandom.uniform(1, n);
+        int randomNumberRow = StdRandom.uniform(1, n + 1);
+        int randomNumberColumn = StdRandom.uniform(1, n + 1);
         while (this.percolations[index].isOpen(randomNumberRow, randomNumberColumn)) {
             randomNumberRow = StdRandom.uniform(1, n);
             randomNumberColumn = StdRandom.uniform(1, n);
@@ -57,15 +57,6 @@ public class PercolationStats {
         blockedCoordinates[0] = randomNumberRow;
         blockedCoordinates[1] = randomNumberColumn;
         return blockedCoordinates;
-    }
-
-    private void intialize(int n, int trials) {
-        if (!validateIndices(n, trials))
-            throw new IllegalArgumentException();
-        this.percolations = new Percolation[n];
-        for (int i = 0; i < trials; i++) {
-            this.percolations[i] = new Percolation(n);
-        }
     }
 
     // sample mean of percolation threshold
