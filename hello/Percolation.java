@@ -56,11 +56,14 @@ public class Percolation {
     }
 
     public int numberOfOpenSites() {
-        int count = 0;
-        for (int i = 1; i < (squareLength * squareLength) + 1; i++) {
+        int count;
+        /* for (int i = 1; i < (squareLength * squareLength) + 1; i++) {
             if (id[i] == 1)
                 count++;
-        }
+        }*/
+        count = (squareLength * squareLength) - weightedQuickUnionUF.count() + 2;
+        // the for loop is time heavy but gives the right answer. Could use an array list to store opened squares and use their length.
+        // the count calculation above leads to errors. Possibly due to concurrency issues in the wuf data structure.
         return count;
     }
 

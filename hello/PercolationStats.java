@@ -8,16 +8,13 @@ import edu.princeton.cs.algs4.StdRandom;
 import edu.princeton.cs.algs4.StdStats;
 
 public class PercolationStats {
-    private Percolation[] percolations;
+    
+    private Percolation percolation;
     private double[] threshold;
 
     public PercolationStats(int n, int trials) {
         if (!validateIndices(n, trials))
             throw new IllegalArgumentException();
-        this.percolations = new Percolation[trials];
-        for (int i = 0; i < trials; i++) {
-            this.percolations[i] = new Percolation(n);
-        }
         simulation(n, trials);
     }
 
@@ -37,19 +34,20 @@ public class PercolationStats {
         double totalSites = n * n;
         this.threshold = new double[trials];
         for (int i = 0; i < trials; i++) {
-            while (!percolations[i].percolates()) {
+            this.percolation = new Percolation(n);
+            while (!this.percolation.percolates()) {
                 int[] blockedSite;
-                blockedSite = randomBlockedSite(i, n);
-                percolations[i].open(blockedSite[0], blockedSite[1]);
+                blockedSite = randomBlockedSite(n);
+                this.percolation.open(blockedSite[0], blockedSite[1]);
             }
-            this.threshold[i] = percolations[i].numberOfOpenSites() / totalSites;
+            this.threshold[i] = this.percolation.numberOfOpenSites() / totalSites;
         }
     }
 
-    private int[] randomBlockedSite(int index, int n) {
+    private int[] randomBlockedSite(int n) {
         int randomNumberRow = StdRandom.uniform(1, n + 1);
         int randomNumberColumn = StdRandom.uniform(1, n + 1);
-        while (this.percolations[index].isOpen(randomNumberRow, randomNumberColumn)) {
+        while (this.percolation.isOpen(randomNumberRow, randomNumberColumn)) {
             randomNumberRow = StdRandom.uniform(1, n);
             randomNumberColumn = StdRandom.uniform(1, n);
         }
