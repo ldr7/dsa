@@ -43,10 +43,9 @@ public class RandomizedDeque<Item> implements Iterable<Item> {
     public Item dequeue() {
         int random = StdRandom.uniform(size);
         Item toReturn = queue[random];
-        for (int i = random; i < size - 1; i++) {
-            queue[i] = queue[i + 1];
-        }
-        queue[size - 1] = null;
+        queue[random] = queue[size];
+        queue[size] = null;
+        size -= 1;
         if (underSizeCheck())
             queue = resizeArray(totalSize / 2);
         return toReturn;
