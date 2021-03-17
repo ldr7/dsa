@@ -45,7 +45,7 @@
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
   </component>
-  <component name="RunManager" selected="Application.Deque">
+  <component name="RunManager" selected="Application.RandomizedQueue">
     <configuration name="CollidingDisks" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="CollidingDisks" />
       <module name="Computer Science" />
@@ -70,6 +70,11 @@
       <option name="MAIN_CLASS_NAME" value="PercolationVisualizer" />
       <module name="Computer Science" />
       <option name="PROGRAM_PARAMETERS" value="Percolation.java" />
+      <method v="2" />
+    </configuration>
+    <configuration name="RandomizedQueue" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="RandomizedQueue" />
+      <module name="Computer Science" />
       <method v="2" />
     </configuration>
     <configuration default="true" type="Application" factoryName="Application">
@@ -107,22 +112,22 @@
       <screen x="67" y="27" width="1853" height="887" />
     </state>
     <state x="363" y="245" width="735" height="513" key="FileChooserDialogImpl/67.27.1853.887@67.27.1853.887" timestamp="1611322413998" />
-    <state width="1853" height="298" key="GridCell.Tab.0.bottom" timestamp="1615997354185">
+    <state width="1853" height="239" key="GridCell.Tab.0.bottom" timestamp="1616000742629">
       <screen x="67" y="27" width="1853" height="887" />
     </state>
-    <state width="1853" height="298" key="GridCell.Tab.0.bottom/67.27.1853.887@67.27.1853.887" timestamp="1615997354185" />
-    <state width="1853" height="298" key="GridCell.Tab.0.center" timestamp="1615997354184">
+    <state width="1853" height="239" key="GridCell.Tab.0.bottom/67.27.1853.887@67.27.1853.887" timestamp="1616000742629" />
+    <state width="1853" height="239" key="GridCell.Tab.0.center" timestamp="1616000742628">
       <screen x="67" y="27" width="1853" height="887" />
     </state>
-    <state width="1853" height="298" key="GridCell.Tab.0.center/67.27.1853.887@67.27.1853.887" timestamp="1615997354184" />
-    <state width="1853" height="298" key="GridCell.Tab.0.left" timestamp="1615997354184">
+    <state width="1853" height="239" key="GridCell.Tab.0.center/67.27.1853.887@67.27.1853.887" timestamp="1616000742628" />
+    <state width="1853" height="239" key="GridCell.Tab.0.left" timestamp="1616000742627">
       <screen x="67" y="27" width="1853" height="887" />
     </state>
-    <state width="1853" height="298" key="GridCell.Tab.0.left/67.27.1853.887@67.27.1853.887" timestamp="1615997354184" />
-    <state width="1853" height="298" key="GridCell.Tab.0.right" timestamp="1615997354185">
+    <state width="1853" height="239" key="GridCell.Tab.0.left/67.27.1853.887@67.27.1853.887" timestamp="1616000742627" />
+    <state width="1853" height="239" key="GridCell.Tab.0.right" timestamp="1616000742628">
       <screen x="67" y="27" width="1853" height="887" />
     </state>
-    <state width="1853" height="298" key="GridCell.Tab.0.right/67.27.1853.887@67.27.1853.887" timestamp="1615997354185" />
+    <state width="1853" height="239" key="GridCell.Tab.0.right/67.27.1853.887@67.27.1853.887" timestamp="1616000742628" />
     <state width="1853" height="298" key="GridCell.Tab.1.bottom" timestamp="1615997354186">
       <screen x="67" y="27" width="1853" height="887" />
     </state>

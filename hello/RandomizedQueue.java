@@ -7,6 +7,7 @@
 import edu.princeton.cs.algs4.StdRandom;
 
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 
 public class RandomizedQueue<Item> implements Iterable<Item> {
 
@@ -34,6 +35,7 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
 
     // add the item
     public void enqueue(Item item) {
+        nullCheck(item);
         if (overSizeCheck())
             queue = resizeArray(totalSize * 2);
         queue[size++] = item;
@@ -41,6 +43,7 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
 
     // remove and return a random item
     public Item dequeue() {
+        emptyQueueCheck();
         int random = StdRandom.uniform(size);
         Item toReturn = queue[random];
         queue[random] = queue[size - 1];
@@ -53,13 +56,19 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
 
     // return a random item (but do not remove it)
     public Item sample() {
+        emptyQueueCheck();
         int random = StdRandom.uniform(size);
         return queue[random];
     }
 
 
     public static void main(String[] args) {
-        // empty method body
+        RandomizedQueue<Integer> randomizedQueue = new RandomizedQueue<>();
+        randomizedQueue.enqueue(1);
+        randomizedQueue.enqueue(2);
+        randomizedQueue.enqueue(3);
+        System.out.println(randomizedQueue.dequeue());
+        System.out.println(randomizedQueue.dequeue());
     }
 
     public Iterator<Item> iterator() {
@@ -87,6 +96,16 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
         return false;
     }
 
+    private void nullCheck(Item item) {
+        if (item == null)
+            throw new IllegalArgumentException();
+    }
+
+    private void emptyQueueCheck() {
+        if (size == 0)
+            throw new NoSuchElementException();
+    }
+
     private class StackIterator implements Iterator<Item> {
         private int current;
 
@@ -99,6 +118,8 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
         }
 
         public Item next() {
+            if (current >= size)
+                throw new NoSuchElementException();
             Item toReturn = queue[current];
             current += 1;
             return toReturn;
