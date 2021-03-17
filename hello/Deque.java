@@ -8,10 +8,11 @@ import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 public class Deque<Item> implements Iterable<Item> {
-    Node first;
-    Node last;
+    private Node first;
+    private Node last;
+    private int size;
 
-    class Node {
+    private class Node {
         Item data;
         Node next;
     }
@@ -19,6 +20,7 @@ public class Deque<Item> implements Iterable<Item> {
     public Deque() {
         this.first = new Node();
         this.last = new Node();
+        size = 0;
     }
 
     public void addFirst(Item item) {
@@ -34,6 +36,7 @@ public class Deque<Item> implements Iterable<Item> {
             first.data = item;
             first.next = oldFirst;
         }
+        size += 1;
     }
 
     public void addLast(Item item) {
@@ -50,6 +53,7 @@ public class Deque<Item> implements Iterable<Item> {
             last.next = null;
             oldLast.next = last;
         }
+        size += 1;
     }
 
     public Item removeFirst() {
@@ -58,6 +62,7 @@ public class Deque<Item> implements Iterable<Item> {
         first = first.next;
         if (isEmpty())
             last = null;
+        size -= 1;
         return item;
     }
 
@@ -71,19 +76,25 @@ public class Deque<Item> implements Iterable<Item> {
             curr = curr.next;
         curr.next = null;
         last = curr;
+        size -= 1;
         return item;
     }
 
 
     public boolean isEmpty() {
-        return first == null;
+        return size == 0;
     }
 
     public static void main(String[] args) {
+        // empty method body
     }
 
     public Iterator<Item> iterator() {
         return new FrontToEnd();
+    }
+
+    public int size() {
+        return size;
     }
 
     private void checkNull(Item item) {
@@ -96,7 +107,7 @@ public class Deque<Item> implements Iterable<Item> {
             throw new NoSuchElementException();
     }
 
-    public class FrontToEnd implements Iterator<Item> {
+    private class FrontToEnd implements Iterator<Item> {
         Node current;
 
         public FrontToEnd() {

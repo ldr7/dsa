@@ -8,15 +8,15 @@ import edu.princeton.cs.algs4.StdRandom;
 
 import java.util.Iterator;
 
-public class RandomizedDeque<Item> implements Iterable<Item> {
+public class RandomizedQueue<Item> implements Iterable<Item> {
 
-    Item[] queue;
-    int size;
     private static final int MINIMUM_SIZE = 2;
-    int totalSize;
+    private Item[] queue;
+    private int size;
+    private int totalSize;
 
     // construct an empty randomized queue
-    public RandomizedDeque() {
+    public RandomizedQueue() {
         queue = (Item[]) new Object[MINIMUM_SIZE];
         size = 0;
         totalSize = MINIMUM_SIZE;
@@ -59,6 +59,7 @@ public class RandomizedDeque<Item> implements Iterable<Item> {
 
 
     public static void main(String[] args) {
+        // empty method body
     }
 
     public Iterator<Item> iterator() {
@@ -67,7 +68,7 @@ public class RandomizedDeque<Item> implements Iterable<Item> {
 
     private Item[] resizeArray(int capacity) {
         Item[] copy = (Item[]) new Object[capacity];
-        for (int i = 0; i < capacity; i++) {
+        for (int i = 0; i < totalSize; i++) {
             copy[i] = queue[i];
         }
         totalSize = capacity;
@@ -86,8 +87,8 @@ public class RandomizedDeque<Item> implements Iterable<Item> {
         return false;
     }
 
-    public class StackIterator implements Iterator<Item> {
-        int current;
+    private class StackIterator implements Iterator<Item> {
+        private int current;
 
         public StackIterator() {
             current = 0;
