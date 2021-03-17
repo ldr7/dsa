@@ -88,9 +88,12 @@ public class Deque<Item> implements Iterable<Item> {
     }
 
     public static void main(String[] args) {
-        // empty method body
+        Deque<Integer> deque = new Deque<>();
+        Iterator<Integer> integerIterator = deque.iterator();
+        System.out.println(integerIterator.hasNext());
     }
 
+    @Override
     public Iterator<Item> iterator() {
         return new FrontToEnd();
     }
@@ -113,30 +116,28 @@ public class Deque<Item> implements Iterable<Item> {
         private Node current;
 
         public FrontToEnd() {
-            current = new Node();
-            current.data = first.data;
-            current.next = first.next;
+            current = first;
         }
 
+        @Override
         public boolean hasNext() {
-            return (size != 0);
+            if (isEmpty())
+                return false;
+            return current != null;
         }
 
+        @Override
         public Item next() {
-            emptyQueueCheck();
-            iterateToEndCheck();
+            if (!hasNext())
+                throw new NoSuchElementException();
             Item item = current.data;
             current = current.next;
             return item;
         }
 
+        @Override
         public void remove() {
             throw new UnsupportedOperationException();
-        }
-
-        private void iterateToEndCheck() {
-            if (current == null)
-                throw new NoSuchElementException();
         }
 
     }

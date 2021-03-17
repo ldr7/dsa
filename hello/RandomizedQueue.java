@@ -43,8 +43,8 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
     public Item dequeue() {
         int random = StdRandom.uniform(size);
         Item toReturn = queue[random];
-        queue[random] = queue[size];
-        queue[size] = null;
+        queue[random] = queue[size - 1];
+        queue[size - 1] = null;
         size -= 1;
         if (underSizeCheck())
             queue = resizeArray(totalSize / 2);
@@ -68,7 +68,7 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
 
     private Item[] resizeArray(int capacity) {
         Item[] copy = (Item[]) new Object[capacity];
-        for (int i = 0; i < totalSize; i++) {
+        for (int i = 0; i < size; i++) {
             copy[i] = queue[i];
         }
         totalSize = capacity;
