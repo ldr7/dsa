@@ -15,6 +15,7 @@ public class Deque<Item> implements Iterable<Item> {
     private class Node {
         Item data;
         Node next;
+        Node prev;
     }
 
     public Deque() {
@@ -29,6 +30,7 @@ public class Deque<Item> implements Iterable<Item> {
             first = new Node();
             first.data = item;
             first.next = null;
+            first.prev = null;
             last = first;
         }
         else {
@@ -36,6 +38,8 @@ public class Deque<Item> implements Iterable<Item> {
             first = new Node();
             first.data = item;
             first.next = oldFirst;
+            first.prev = null;
+            oldFirst.prev = first;
         }
         size += 1;
     }
@@ -46,6 +50,7 @@ public class Deque<Item> implements Iterable<Item> {
             last = new Node();
             last.data = item;
             last.next = null;
+            last.prev = null;
             first = last;
         }
         else {
@@ -53,6 +58,7 @@ public class Deque<Item> implements Iterable<Item> {
             last = new Node();
             last.data = item;
             last.next = null;
+            last.prev = oldLast;
             oldLast.next = last;
         }
         size += 1;
@@ -65,6 +71,8 @@ public class Deque<Item> implements Iterable<Item> {
         size -= 1;
         if (isEmpty())
             last = null;
+        else
+            first.prev = null;
         return item;
     }
 
@@ -73,11 +81,8 @@ public class Deque<Item> implements Iterable<Item> {
         if (first.equals(last))
             return removeFirst();
         Item item = last.data;
-        Node curr = first;
-        while (!curr.next.equals(last))
-            curr = curr.next;
-        curr.next = null;
-        last = curr;
+        last = last.prev;
+        last.next = null;
         size -= 1;
         return item;
     }

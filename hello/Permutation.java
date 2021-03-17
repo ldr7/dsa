@@ -12,6 +12,8 @@ public class Permutation {
         RandomizedQueue<String> randomizedDeque = new RandomizedQueue<>();
         while (!StdIn.isEmpty()) {
             randomizedDeque.enqueue(StdIn.readString());
+            if (randomizedDeque.size() == k)
+                System.out.println(randomizedDeque.dequeue());
         }
         for (int i = 0; i < k; i++) {
             System.out.println(randomizedDeque.dequeue());
