@@ -107,21 +107,30 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
     }
 
     private class StackIterator implements Iterator<Item> {
-        private int current;
+        private int copySize;
+        private Item[] copyQueue;
 
         public StackIterator() {
-            current = 0;
+            copySize = 0;
+            copyQueue = (Item[]) new Object[size];
+            for (int i = 0; i < size; i++) {
+                copyQueue[i] = queue[i];
+            }
+            copySize = size;
         }
 
         public boolean hasNext() {
-            return current < size;
+            return copySize != 0;
         }
 
         public Item next() {
-            if (current >= size)
+            if (!hasNext())
                 throw new NoSuchElementException();
-            Item toReturn = queue[current];
-            current += 1;
+            int randomIteratorElement = StdRandom.uniform(copySize);
+            Item toReturn = copyQueue[randomIteratorElement];
+            copyQueue[randomIteratorElement] = copyQueue[copySize - 1];
+            copyQueue[copySize - 1] = null;
+            copySize -= 1;
             return toReturn;
         }
     }

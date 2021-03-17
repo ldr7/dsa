@@ -62,9 +62,9 @@ public class Deque<Item> implements Iterable<Item> {
         emptyQueueCheck();
         Item item = first.data;
         first = first.next;
+        size -= 1;
         if (isEmpty())
             last = null;
-        size -= 1;
         return item;
     }
 
