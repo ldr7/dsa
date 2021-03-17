@@ -33,6 +33,7 @@ public class Deque<Item> implements Iterable<Item> {
         }
         else {
             Node oldFirst = first;
+            first = new Node();
             first.data = item;
             first.next = oldFirst;
         }
@@ -49,6 +50,7 @@ public class Deque<Item> implements Iterable<Item> {
         }
         else {
             Node oldLast = last;
+            last = new Node();
             last.data = item;
             last.next = null;
             oldLast.next = last;
@@ -108,19 +110,21 @@ public class Deque<Item> implements Iterable<Item> {
     }
 
     private class FrontToEnd implements Iterator<Item> {
-        Node current;
+        private Node current;
 
         public FrontToEnd() {
             current = new Node();
-            current = first;
+            current.data = first.data;
+            current.next = first.next;
         }
 
         public boolean hasNext() {
-            return !(current == null);
+            return (size != 0);
         }
 
         public Item next() {
             emptyQueueCheck();
+            iterateToEndCheck();
             Item item = current.data;
             current = current.next;
             return item;
@@ -128,6 +132,11 @@ public class Deque<Item> implements Iterable<Item> {
 
         public void remove() {
             throw new UnsupportedOperationException();
+        }
+
+        private void iterateToEndCheck() {
+            if (current == null)
+                throw new NoSuchElementException();
         }
 
     }
