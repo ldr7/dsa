@@ -71,7 +71,9 @@ public class Point implements Comparable<Point> {
             return Double.POSITIVE_INFINITY;
         }
         else {
-            double slope = (this.y - that.y) / (this.x - that.x);
+            double num = that.y - this.y;
+            double den = that.x - this.x;
+            double slope = num / den;
             return slope;
         }
     }
@@ -96,11 +98,10 @@ public class Point implements Comparable<Point> {
         else if (this.y == that.y) {
             if (this.x < that.x)
                 return -1;
-            else
-                return 1;
+            else if (this.x == that.x)
+                return 0;
         }
-        else
-            return 1;
+        return 1;
     }
 
     /**

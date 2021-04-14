@@ -17,18 +17,8 @@ public class BruteCollinearPoints {
         for (int i = 0; i < points.length; i++) {
             if (points[i] == null)
                 throw new IllegalArgumentException();
-            if (containsElement(points[i], pointsSet))
-                throw new IllegalArgumentException();
             pointsSet[i] = points[i];
         }
-    }
-
-    private boolean containsElement(Point p, Point[] pointArray) {
-        for (int i = 0; i < pointArray.length; i++) {
-            if (p.slopeTo(pointArray[i]) == Double.NEGATIVE_INFINITY)
-                return true;
-        }
-        return false;
     }
 
     public int numberOfSegments() {
@@ -43,14 +33,22 @@ public class BruteCollinearPoints {
             for (int j = i + 1; j < pointsSet.length; j++) {
                 for (int k = j + 1; k < pointsSet.length; k++) {
                     for (int m = k + 1; m < pointsSet.length; m++) {
-                        if ((pointsSet[i].compareTo(pointsSet[j]) == pointsSet[i]
-                                .compareTo(pointsSet[k])) && (pointsSet[i].compareTo(pointsSet[k])
-                                == pointsSet[i].compareTo(pointsSet[m]))) {
+                        if ((pointsSet[i].slopeTo(pointsSet[j]) == pointsSet[i]
+                                .slopeTo(pointsSet[k])) && (pointsSet[i].slopeTo(pointsSet[k])
+                                == pointsSet[i].slopeTo(pointsSet[m]))) {
                             lineSegments[count++] = new LineSegment(pointsSet[i], pointsSet[m]);
                         }
                     }
                 }
             }
+        }
+
+        return derefArrayExcess(lineSegments, count, pointsSet.length);
+    }
+
+    private LineSegment[] derefArrayExcess(LineSegment[] lineSegments, int countDup, int total) {
+        for (int i = countDup; i < total; i++) {
+            lineSegments[i] = null;
         }
         return lineSegments;
     }

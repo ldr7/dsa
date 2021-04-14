@@ -123,7 +123,7 @@ public class FastCollinearPoints {
 
     public static void main(String[] args) {
         // read the n points from a file
-        In in = new In(args[0]);
+        /*In in = new In(args[0]);
         int n = in.readInt();
         Point[] points = new Point[n];
         for (int i = 0; i < n; i++) {
@@ -147,6 +147,6 @@ public class FastCollinearPoints {
             StdOut.println(segment);
             segment.draw();
         }
-        StdDraw.show();
+        StdDraw.show();*/
     }
 }
