@@ -1,7 +1,9 @@
+package Week3;
+
 /*************************************************************************
- *  Compilation:  javac LineSegment.java
+ *  Compilation:  javac Week3.LineSegment.java
  *  Execution:    none
- *  Dependencies: Point.java
+ *  Dependencies: Week3.Point.java
  *
  *  An immutable data type for Line segments in the plane.
  *  For use on Coursera, Algorithms Part I programming assignment.
@@ -24,11 +26,11 @@ public class LineSegment {
      */
     public LineSegment(Point p, Point q) {
         if (p == null || q == null) {
-            throw new IllegalArgumentException("argument to LineSegment constructor is null");
+            throw new IllegalArgumentException("argument to Week3.LineSegment constructor is null");
         }
         if (p.equals(q)) {
             throw new IllegalArgumentException(
-                    "both arguments to LineSegment constructor are the same point: " + p);
+                    "both arguments to Week3.LineSegment constructor are the same point: " + p);
         }
         this.p = p;
         this.q = q;

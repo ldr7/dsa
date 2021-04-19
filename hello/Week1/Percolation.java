@@ -1,4 +1,4 @@
-/* *****************************************************************************
+package Week1;/* *****************************************************************************
  *  Name:              Ada Lovelace
  *  Coursera User ID:  123456
  *  Last modified:     October 16, 1842
@@ -119,7 +119,7 @@ public class Percolation {
     }
 
     public static void main(String[] args) {
-        /* Percolation percolation = new Percolation(2);
+        /* Week1.Percolation percolation = new Week1.Percolation(2);
         StdOut.println("percolates = " + percolation.percolates());
         StdOut.println("isOpen(1, 2) = " + percolation.isOpen(1, 2));
         StdOut.println("isFull(1, 2) = " + percolation.isFull(1, 2));

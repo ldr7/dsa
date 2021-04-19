@@ -52,7 +52,7 @@
       <method v="2" />
     </configuration>
     <configuration name="Deque" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="Deque" />
+      <option name="MAIN_CLASS_NAME" value="Week2.Deque" />
       <module name="Computer Science" />
       <method v="2" />
     </configuration>
@@ -62,18 +62,18 @@
       <method v="2" />
     </configuration>
     <configuration name="Percolation" type="Application" factoryName="Application">
-      <option name="MAIN_CLASS_NAME" value="Percolation" />
+      <option name="MAIN_CLASS_NAME" value="Week1.Percolation" />
       <module name="Computer Science" />
       <method v="2" />
     </configuration>
     <configuration name="PercolationVisualizer" type="Application" factoryName="Application">
-      <option name="MAIN_CLASS_NAME" value="PercolationVisualizer" />
+      <option name="MAIN_CLASS_NAME" value="Week1.PercolationVisualizer" />
       <module name="Computer Science" />
       <option name="PROGRAM_PARAMETERS" value="Percolation.java" />
       <method v="2" />
     </configuration>
     <configuration name="RandomizedQueue" type="Application" factoryName="Application">
-      <option name="MAIN_CLASS_NAME" value="RandomizedQueue" />
+      <option name="MAIN_CLASS_NAME" value="Week2.RandomizedQueue" />
       <module name="Computer Science" />
       <method v="2" />
     </configuration>
