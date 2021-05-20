@@ -45,7 +45,7 @@
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
   </component>
-  <component name="RunManager" selected="Application.Week3.MergeSort">
+  <component name="RunManager" selected="Application.Week3.KthSmallestElementSortedArrays">
     <configuration name="CollidingDisks" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="CollidingDisks" />
       <module name="Computer Science" />
@@ -74,6 +74,11 @@
     </configuration>
     <configuration name="RandomizedQueue" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="Week2.RandomizedQueue" />
+      <module name="Computer Science" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Week3.KthSmallestElementSortedArrays" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="Week3.KthSmallestElementSortedArrays" />
       <module name="Computer Science" />
       <method v="2" />
     </configuration>
