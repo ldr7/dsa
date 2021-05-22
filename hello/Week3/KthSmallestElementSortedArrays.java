@@ -16,6 +16,7 @@ public class KthSmallestElementSortedArrays {
 
         // Check if arr1 is empty returning
         // k-th element of arr2
+        // do the same check for arr2 since the ines ensuring that arr1 is the smaller array have been removed.
         if (m == 0)
             return arr2[k - 1];
 
